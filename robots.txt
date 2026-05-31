@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://idate-revibe-release-2026-by-restia.netlify.app/sitemap.xml
