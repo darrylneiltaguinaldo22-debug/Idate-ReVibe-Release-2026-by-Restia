@@ -1063,6 +1063,9 @@
 
 <footer class="footer">
   IDATE Revibe &nbsp;·&nbsp; 4 Keys Release List &nbsp;·&nbsp; By <span>[NG]~Restia*ADM</span> &nbsp;·&nbsp; 2026
+  <div style="margin-top:8px; font-size:0.75rem; opacity:0.6; letter-spacing:0.08em;">
+    👁 <span id="visit-count">...</span> visits
+  </div>
 </footer>
 
 <script>
@@ -1126,5 +1129,18 @@ function sortBy(col) {
 </script>
 
 <script data-goatcounter="https://idate-revibe-multiplier-release-2026.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<script>
+fetch('https://idate-revibe-multiplier-release-2026.goatcounter.com/counter//.json')
+  .then(r => r.json())
+  .then(d => {
+    const el = document.getElementById('visit-count');
+    if (el && d.count) el.textContent = d.count;
+  })
+  .catch(() => {
+    const el = document.getElementById('visit-count');
+    if (el) el.textContent = '—';
+  });
+</script>
 </body>
 </html>
