@@ -678,6 +678,38 @@
     td { padding: 0.6rem 0.8rem; }
     th { padding: 0.8rem; }
   }
+
+  /* TAB BUTTONS */
+  .tab-bar {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .tab-btn {
+    background: rgba(224,0,255,0.12);
+    border: 1.5px solid rgba(224,0,255,0.35);
+    color: rgba(255,255,255,0.6);
+    padding: 0.55rem 1.6rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover {
+    background: rgba(224,0,255,0.25);
+    color: #fff;
+  }
+  .tab-btn.tab-active {
+    background: linear-gradient(135deg, #e000ff, #6600ff);
+    border-color: #e000ff;
+    color: #fff;
+    box-shadow: 0 0 16px rgba(224,0,255,0.5);
+  }
+
 </style>
 </head>
 <body>
@@ -687,7 +719,7 @@
   <div class="hero-overlay"></div>
   <div class="scanlines"></div>
   <div class="hero-content">
-    <div class="label-tag">IDATE Revibe · 4 Keys</div>
+    <div class="label-tag">IDATE Revibe · 4 & 8 Keys</div>
     <h1 class="hero-title">New<br>Generation</h1>
     <div class="hero-sub">Song Release Database</div>
     <div class="hero-meta">Compiled by <span>[NG]~Restia*ADM</span> &nbsp;·&nbsp; 2026</div>
@@ -705,19 +737,222 @@
   </div>
 </section>
 
-<div class="coming-soon-banner">
-  <div class="cs-inner">
-    <span class="cs-icon">🔔</span>
-    <span class="cs-text">IDATE Revibe <strong>8 Keys</strong> list is coming soon — stay tuned!</span>
-    <span class="cs-badge">COMING SOON</span>
+<main class="main" style="margin-top:2rem">
+
+  <!-- TAB BUTTONS -->
+  <div class="tab-bar">
+    <button class="tab-btn tab-active" onclick="switchTab('4k')" id="tab-4k">🎹 4 Keys</button>
+    <button class="tab-btn" onclick="switchTab('8k')" id="tab-8k">🎹 8 Keys</button>
   </div>
-</div>
 
-<main class="main">
+  <!-- 4 KEYS PANEL -->
+  <div id="panel-8k" style="display:none">
 
-  <!-- SONG LIST -->
   <div class="section-head">
-    <h2>Song List</h2>
+    <h2>8 Keys Song List</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search8k" placeholder="Search song name…" oninput="filterTable8k()">
+    </div>
+    <button class="sort-btn" onclick="sortBy8k(&#39;song&#39;)">Sort A–Z</button>
+    <button class="sort-btn" onclick="sortBy8k(&#39;score&#39;)">Sort Score</button>
+    <button class="sort-btn" onclick="sortBy8k(&#39;default&#39;)">Default</button>
+  </div>
+
+  <div class="table-wrap">
+    <table id="songTable8k">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th onclick="sortBy8k(&#39;song&#39;)" id="th8k-song">Song</th>
+          <th onclick="sortBy8k(&#39;release&#39;)" id="th8k-release">Multiplier Release</th>
+          <th onclick="sortBy8k(&#39;score&#39;)" id="th8k-score">Max Score</th>
+        </tr>
+      </thead>
+      <tbody id="songBody8k">
+<tr><td class="num">1</td><td class="song">160</td><td class="release">x8</td><td class="score">129,324</td></tr>
+<tr><td class="num">2</td><td class="song">160 (WTF version)</td><td class="release">x2, x8</td><td class="score">212,104</td></tr>
+<tr><td class="num">3</td><td class="song">2 Different Tears</td><td class="release">x8</td><td class="score">162,145</td></tr>
+<tr><td class="num">4</td><td class="song">50 Ways To Say Goodbye</td><td class="release">x8, x7</td><td class="score">398,448</td></tr>
+<tr><td class="num">5</td><td class="song">A Red Sky</td><td class="release">x8+1</td><td class="score">121,070</td></tr>
+<tr><td class="num">6</td><td class="song">Abracadabra</td><td class="release">x2+1, x8</td><td class="score">187,314</td></tr>
+<tr><td class="num">7</td><td class="song">Addicted to you</td><td class="release">x2, x8+1</td><td class="score">292,201</td></tr>
+<tr><td class="num">8</td><td class="song">Again &amp; Again</td><td class="release">x4, x8+1</td><td class="score">261,355</td></tr>
+<tr><td class="num">9</td><td class="song">Amoled</td><td class="release">x2+1, x8+1</td><td class="score">182,728</td></tr>
+<tr><td class="num">10</td><td class="song">Are You Crazy Enough</td><td class="release">x6, x7</td><td class="score">239,610</td></tr>
+<tr><td class="num">11</td><td class="song">Ayy Girl ft. Kanye West</td><td class="release">x7+1</td><td class="score">72,936</td></tr>
+<tr><td class="num">12</td><td class="song">Babay</td><td class="release">x2, x8</td><td class="score">166,588</td></tr>
+<tr><td class="num">13</td><td class="song">Back It Up</td><td class="release">x8, x2</td><td class="score">188,517</td></tr>
+<tr><td class="num">14</td><td class="song">Bailando Por Del Mundo</td><td class="release">x2, x8</td><td class="score">158,143</td></tr>
+<tr><td class="num">15</td><td class="song">Bang<span class="note-badge" title="Auto Great 3:02">📌 Auto Great 3:02</span></td><td class="release">x2+1, x8+1</td><td class="score">189,023</td></tr>
+<tr><td class="num">16</td><td class="song">Bare<span class="note-badge" title="Auto Great 3:27">📌 Auto Great 3:27</span></td><td class="release">x4, x8</td><td class="score">206,350</td></tr>
+<tr><td class="num">17</td><td class="song">Bean Dduk Bing Soo</td><td class="release">x2, x8</td><td class="score">240,495</td></tr>
+<tr><td class="num">18</td><td class="song">Bo Beep Bo Beep<span class="note-badge" title="Auto Great 1:03">📌 Auto Great 1:03</span></td><td class="release">x2, x8+1, x5</td><td class="score">289,789</td></tr>
+<tr><td class="num">19</td><td class="song">Bon Voyage<span class="note-badge" title="Auto Great 1:04">📌 Auto Great 1:04</span></td><td class="release">x7+1</td><td class="score">96,125</td></tr>
+<tr><td class="num">20</td><td class="song">Bonamana</td><td class="release">x8, x5</td><td class="score">284,680</td></tr>
+<tr><td class="num">21</td><td class="song">Call Me</td><td class="release">x8</td><td class="score">153,304</td></tr>
+<tr><td class="num">22</td><td class="song">Call Me Maybe</td><td class="release">x8, x3</td><td class="score">302,414</td></tr>
+<tr><td class="num">23</td><td class="song">Candy</td><td class="release">x2+1, x8+1</td><td class="score">205,360</td></tr>
+<tr><td class="num">24</td><td class="song">Can&#x27;t Nobody</td><td class="release">x4, x8</td><td class="score">209,352</td></tr>
+<tr><td class="num">25</td><td class="song">Celepretty</td><td class="release">x8, x8</td><td class="score">479,091</td></tr>
+<tr><td class="num">26</td><td class="song">Chitty Chitty Bang Bang</td><td class="release">x4, x8</td><td class="score">216,500</td></tr>
+<tr><td class="num">27</td><td class="song">Circus</td><td class="release">x7+1</td><td class="score">81,629</td></tr>
+<tr><td class="num">28</td><td class="song">Clap Your Hands</td><td class="release">x8+1</td><td class="score">189,732</td></tr>
+<tr><td class="num">29</td><td class="song">Como Explicarte</td><td class="release">x8</td><td class="score">88,842</td></tr>
+<tr><td class="num">30</td><td class="song">Cositas Que Haciamos<span class="note-badge" title="3rd note missing. Auto Bad 0:15">📌 3rd note missing. Auto Bad 0:15</span></td><td class="release">x7</td><td class="score">86,338</td></tr>
+<tr><td class="num">31</td><td class="song">Crooked<span class="note-badge" title="Auto Great 2:01">📌 Auto Great 2:01</span></td><td class="release">x8, x5</td><td class="score">189,327</td></tr>
+<tr><td class="num">32</td><td class="song">Damaged Lady</td><td class="release">x8+1</td><td class="score">203,972</td></tr>
+<tr><td class="num">33</td><td class="song">Dance Again</td><td class="release">x4, x8</td><td class="score">326,782</td></tr>
+<tr><td class="num">34</td><td class="song">Dancing Queen<span class="note-badge" title="Auto Great 0:36">📌 Auto Great 0:36</span></td><td class="release">x8, x4</td><td class="score">236,538</td></tr>
+<tr><td class="num">35</td><td class="song">Dash</td><td class="release">x4+1, x8</td><td class="score">265,059</td></tr>
+<tr><td class="num">36</td><td class="song">Day to Day</td><td class="release">x3, x8+1</td><td class="score">190,941</td></tr>
+<tr><td class="num">37</td><td class="song">Die Young</td><td class="release">x6, x8</td><td class="score">358,859</td></tr>
+<tr><td class="num">38</td><td class="song">Disco Disco</td><td class="release">x8</td><td class="score">117,073</td></tr>
+<tr><td class="num">39</td><td class="song">Don&#x27;t Go</td><td class="release">x4+1, x8</td><td class="score">203,480</td></tr>
+<tr><td class="num">40</td><td class="song">Don&#x27;t Hate Me</td><td class="release">x7, x8</td><td class="score">431,187</td></tr>
+<tr><td class="num">41</td><td class="song">Elvis</td><td class="release">???</td><td class="score">???</td></tr>
+<tr><td class="num">42</td><td class="song">Energetic</td><td class="release">???</td><td class="score">???</td></tr>
+<tr><td class="num">43</td><td class="song">Everybody<span class="note-badge" title="Auto Great per notes">📌 Auto Great per notes</span></td><td class="release">x4, x4, x4, x3</td><td class="score">109,800</td></tr>
+<tr><td class="num">44</td><td class="song">Everybody on the Dance Floor</td><td class="release">x8</td><td class="score">107,654</td></tr>
+<tr><td class="num">45</td><td class="song">Everybody Talks</td><td class="release">x7, x8</td><td class="score">391,610</td></tr>
+<tr><td class="num">46</td><td class="song">Fire</td><td class="release">x3, x8+1</td><td class="score">148,972</td></tr>
+<tr><td class="num">47</td><td class="song">Fly</td><td class="release">x8</td><td class="score">74,037</td></tr>
+<tr><td class="num">48</td><td class="song">Freestyle</td><td class="release">x4, x8</td><td class="score">309,042</td></tr>
+<tr><td class="num">49</td><td class="song">Friday</td><td class="release">x3, x8+1</td><td class="score">168,928</td></tr>
+<tr><td class="num">50</td><td class="song">FunkyTown</td><td class="release">x4, x8+1</td><td class="score">316,227</td></tr>
+<tr><td class="num">51</td><td class="song">Ganbuk Handsome Guy</td><td class="release">x4, x8</td><td class="score">274,031</td></tr>
+<tr><td class="num">52</td><td class="song">Gangnam Style (3 Star)</td><td class="release">x8+1, x3</td><td class="score">150,355</td></tr>
+<tr><td class="num">53</td><td class="song">Gangnam Style (4 Star)<span class="note-badge" title="Auto Cool 2:41 / Auto Great 2:33">📌 Auto Cool 2:41 / Auto Great 2:33</span></td><td class="release">x4+1, x8</td><td class="score">281,087</td></tr>
+<tr><td class="num">54</td><td class="song">Gentleman</td><td class="release">x3, x8</td><td class="score">279,439</td></tr>
+<tr><td class="num">55</td><td class="song">God Of Music</td><td class="release">x7, x8</td><td class="score">547,012</td></tr>
+<tr><td class="num">56</td><td class="song">Goodbye Baby</td><td class="release">x6, x8</td><td class="score">310,563</td></tr>
+<tr><td class="num">57</td><td class="song">Growl</td><td class="release">x8</td><td class="score">156,367</td></tr>
+<tr><td class="num">58</td><td class="song">Heartbeat</td><td class="release">x2+1, x8</td><td class="score">178,365</td></tr>
+<tr><td class="num">59</td><td class="song">Heartthrob</td><td class="release">???</td><td class="score">???</td></tr>
+<tr><td class="num">60</td><td class="song">Hip Song</td><td class="release">x3+1, x8</td><td class="score">190,253</td></tr>
+<tr><td class="num">61</td><td class="song">His Voice</td><td class="release">x8+1, x2</td><td class="score">180,749</td></tr>
+<tr><td class="num">62</td><td class="song">Honey</td><td class="release">x2, x8+1</td><td class="score">119,176</td></tr>
+<tr><td class="num">63</td><td class="song">Hoot</td><td class="release">x8+1, x3</td><td class="score">228,377</td></tr>
+<tr><td class="num">64</td><td class="song">Hot Issue</td><td class="release">x3, x8</td><td class="score">230,898</td></tr>
+<tr><td class="num">65</td><td class="song">HUH<span class="note-badge" title="Auto Great 2:21">📌 Auto Great 2:21</span></td><td class="release">x2+1, x8+1</td><td class="score">176,593</td></tr>
+<tr><td class="num">66</td><td class="song">I And I</td><td class="release">x8</td><td class="score">102,570</td></tr>
+<tr><td class="num">67</td><td class="song">I can&#x27;t live Because of you</td><td class="release">x8+1</td><td class="score">174,552</td></tr>
+<tr><td class="num">68</td><td class="song">I Don&#x27;t Care</td><td class="release">x3+1, x8</td><td class="score">158,734</td></tr>
+<tr><td class="num">69</td><td class="song">I Don&#x27;t Give You</td><td class="release">x3, x8+2</td><td class="score">183,745</td></tr>
+<tr><td class="num">70</td><td class="song">I Need U</td><td class="release">x3, x8, x8</td><td class="score">735,946</td></tr>
+<tr><td class="num">71</td><td class="song">I Wanna Go</td><td class="release">x7, x8</td><td class="score">436,746</td></tr>
+<tr><td class="num">72</td><td class="song">If You Do</td><td class="release">???</td><td class="score">???</td></tr>
+<tr><td class="num">73</td><td class="song">I&#x27;m The Best<span class="note-badge" title="Auto Great 2:07">📌 Auto Great 2:07</span></td><td class="release">x4, x8</td><td class="score">222,248</td></tr>
+<tr><td class="num">74</td><td class="song">Indian Boy</td><td class="release">x8</td><td class="score">176,151</td></tr>
+<tr><td class="num">75</td><td class="song">Insomnia</td><td class="release">x8</td><td class="score">110,641</td></tr>
+<tr><td class="num">76</td><td class="song">Intentalo</td><td class="release">x3+1, x8+1</td><td class="score">308,002</td></tr>
+<tr><td class="num">77</td><td class="song">Juliet</td><td class="release">x8+1</td><td class="score">219,841</td></tr>
+<tr><td class="num">78</td><td class="song">Jumping</td><td class="release">x8+1</td><td class="score">162,487</td></tr>
+<tr><td class="num">79</td><td class="song">Keep On Moving</td><td class="release">x8</td><td class="score">106,302</td></tr>
+<tr><td class="num">80</td><td class="song">L.O.V.E</td><td class="release">x3, x8+1</td><td class="score">149,962</td></tr>
+<tr><td class="num">81</td><td class="song">Leave Me Alone Mix</td><td class="release">x8+1</td><td class="score">112,884</td></tr>
+<tr><td class="num">82</td><td class="song">Let Me In</td><td class="release">x8</td><td class="score">117,978</td></tr>
+<tr><td class="num">83</td><td class="song">Like This</td><td class="release">x7</td><td class="score">76,116</td></tr>
+<tr><td class="num">84</td><td class="song">Lollipop</td><td class="release">x8</td><td class="score">105,424</td></tr>
+<tr><td class="num">85</td><td class="song">Lollipop Ver. 2</td><td class="release">x2, x8+1</td><td class="score">180,225</td></tr>
+<tr><td class="num">86</td><td class="song">Lonely</td><td class="release">x8</td><td class="score">160,773</td></tr>
+<tr><td class="num">87</td><td class="song">Love Cuts</td><td class="release">x8</td><td class="score">197,229</td></tr>
+<tr><td class="num">88</td><td class="song">Love Ya</td><td class="release">x4+2, x8+1</td><td class="score">225,789</td></tr>
+<tr><td class="num">89</td><td class="song">Lovey Dovey</td><td class="release">x3, x8</td><td class="score">187,223</td></tr>
+<tr><td class="num">90</td><td class="song">Lupin</td><td class="release">x2+1, x8+1</td><td class="score">158,595</td></tr>
+<tr><td class="num">91</td><td class="song">Mad Life</td><td class="release">x8</td><td class="score">117,970</td></tr>
+<tr><td class="num">92</td><td class="song">Magic</td><td class="release">x2+1, x8</td><td class="score">221,798</td></tr>
+<tr><td class="num">93</td><td class="song">Make A Wish</td><td class="release">x3, x8</td><td class="score">226,284</td></tr>
+<tr><td class="num">94</td><td class="song">Man In Love</td><td class="release">x4, x8</td><td class="score">294,108</td></tr>
+<tr><td class="num">95</td><td class="song">Melody From Sugar</td><td class="release">x8</td><td class="score">107,745</td></tr>
+<tr><td class="num">96</td><td class="song">Mi Prefieres A Mi</td><td class="release">x8+1</td><td class="score">89,963</td></tr>
+<tr><td class="num">97</td><td class="song">Mirotic</td><td class="release">x7</td><td class="score">71,763</td></tr>
+<tr><td class="num">98</td><td class="song">Missing you</td><td class="release">x3, x8</td><td class="score">184,183</td></tr>
+<tr><td class="num">99</td><td class="song">Mister<span class="note-badge" title="Auto Great 0:19">📌 Auto Great 0:19</span></td><td class="release">x2, x8</td><td class="score">155,317</td></tr>
+<tr><td class="num">100</td><td class="song">Moon in a Day</td><td class="release">x8+1</td><td class="score">143,545</td></tr>
+<tr><td class="num">101</td><td class="song">Mosquito <span class="note-badge" title="Auto Great 1:42">📌 Auto Great 1:42</span></td><td class="release">x2+1, x6</td><td class="score">60,529</td></tr>
+<tr><td class="num">102</td><td class="song">Moves Like Jagger</td><td class="release">x5, x8</td><td class="score">326,118</td></tr>
+<tr><td class="num">103</td><td class="song">Mr. Bang Bang</td><td class="release">x8+1, x3</td><td class="score">180,089</td></tr>
+<tr><td class="num">104</td><td class="song">Mr. Simple</td><td class="release">x6, x8</td><td class="score">342,808</td></tr>
+<tr><td class="num">105</td><td class="song">Mr. Taxi</td><td class="release">x2, x8</td><td class="score">159,651</td></tr>
+<tr><td class="num">106</td><td class="song">Muzik</td><td class="release">x4+1, x8</td><td class="score">216,104</td></tr>
+<tr><td class="num">107</td><td class="song">My Love Romance</td><td class="release">x8, x3</td><td class="score">153,941</td></tr>
+<tr><td class="num">108</td><td class="song">My Style<span class="note-badge" title="Auto Great 2:12 1:53 1:38">📌 Auto Great 2:12 1:53 1:38</span></td><td class="release">x7, x4+1</td><td class="score">100,033</td></tr>
+<tr><td class="num">109</td><td class="song">Mystic View</td><td class="release">x7+1</td><td class="score">97,536</td></tr>
+<tr><td class="num">110</td><td class="song">Nengmyun<span class="note-badge" title="Auto Great 2:48">📌 Auto Great 2:48</span></td><td class="release">x8, x3</td><td class="score">141,157</td></tr>
+<tr><td class="num">111</td><td class="song">No Piensas A Mi</td><td class="release">x2+1, x8+1</td><td class="score">144,753</td></tr>
+<tr><td class="num">112</td><td class="song">No.9<span class="note-badge" title="Auto Great All Notes">📌 Auto Great All Notes</span></td><td class="release">x4, x4, x5, x2+1</td><td class="score">233,959</td></tr>
+<tr><td class="num">113</td><td class="song">Nobody</td><td class="release">x4, x8</td><td class="score">200,311</td></tr>
+<tr><td class="num">114</td><td class="song">Nu ABO</td><td class="release">x2+1, x8+1</td><td class="score">144,753</td></tr>
+<tr><td class="num">115</td><td class="song">Oh</td><td class="release">x8+2</td><td class="score">144,486</td></tr>
+<tr><td class="num">116</td><td class="song">Oh Yeah</td><td class="release">x4, x8+1</td><td class="score">294,357</td></tr>
+<tr><td class="num">117</td><td class="song">One</td><td class="release">x3, x8</td><td class="score">150,480</td></tr>
+<tr><td class="num">118</td><td class="song">Paradise</td><td class="release">x3+1, x8+1</td><td class="score">180,059</td></tr>
+<tr><td class="num">119</td><td class="song">Party In My Bag</td><td class="release">x8</td><td class="score">103,529</td></tr>
+<tr><td class="num">120</td><td class="song">Pasarela<span class="note-badge" title="Auto Great 2:18">📌 Auto Great 2:18</span></td><td class="release">x3+1, x8+1</td><td class="score">233,942</td></tr>
+<tr><td class="num">121</td><td class="song">Passion of Freedom</td><td class="release">x7+1</td><td class="score">94,246</td></tr>
+<tr><td class="num">122</td><td class="song">Piana<span class="note-badge" title="Auto Great 2:41">📌 Auto Great 2:41</span></td><td class="release">x4, x8+2</td><td class="score">189,468</td></tr>
+<tr><td class="num">123</td><td class="song">Positive Moment</td><td class="release">x8</td><td class="score">119,887</td></tr>
+<tr><td class="num">124</td><td class="song">Psychic Police</td><td class="release">x8</td><td class="score">107,668</td></tr>
+<tr><td class="num">125</td><td class="song">Pumpkin<span class="note-badge" title="Auto Great 0:54">📌 Auto Great 0:54</span></td><td class="release">x8, x3</td><td class="score">154,207</td></tr>
+<tr><td class="num">126</td><td class="song">Purple Orange</td><td class="release">x7+1</td><td class="score">102,904</td></tr>
+<tr><td class="num">127</td><td class="song">Really Really</td><td class="release">x8, x8</td><td class="score">433,972</td></tr>
+<tr><td class="num">128</td><td class="song">Reggae on Jah</td><td class="release">x7+1</td><td class="score">89,582</td></tr>
+<tr><td class="num">129</td><td class="song">Return</td><td class="release">x4, x8</td><td class="score">221,846</td></tr>
+<tr><td class="num">130</td><td class="song">Ride The Rhythm</td><td class="release">x8</td><td class="score">121,464</td></tr>
+<tr><td class="num">131</td><td class="song">Right Now</td><td class="release">x8</td><td class="score">109,738</td></tr>
+<tr><td class="num">132</td><td class="song">Rocking<span class="note-badge" title="Auto Great 0:53">📌 Auto Great 0:53</span></td><td class="release">x8, x4</td><td class="score">211,641</td></tr>
+<tr><td class="num">133</td><td class="song">Rockstar</td><td class="release">x4, x8</td><td class="score">197,049</td></tr>
+<tr><td class="num">134</td><td class="song">Roly-Poly<span class="note-badge" title="Auto Great 1:33">📌 Auto Great 1:33</span></td><td class="release">x8, x6</td><td class="score">261,633</td></tr>
+<tr><td class="num">135</td><td class="song">Scene of the Moment</td><td class="release">x2, x8+1</td><td class="score">214,372</td></tr>
+<tr><td class="num">136</td><td class="song">Sexy Karma</td><td class="release">x7</td><td class="score">94,213</td></tr>
+<tr><td class="num">137</td><td class="song">She was Dead</td><td class="release">???</td><td class="score">???</td></tr>
+<tr><td class="num">138</td><td class="song">Shock</td><td class="release">x4+1, x8</td><td class="score">226,043</td></tr>
+<tr><td class="num">139</td><td class="song">Show Me What You Got</td><td class="release">x8</td><td class="score">107,311</td></tr>
+<tr><td class="num">140</td><td class="song">Smile Boy</td><td class="release">x2, x8</td><td class="score">132,116</td></tr>
+<tr><td class="num">141</td><td class="song">So Hot</td><td class="release">x2+1, x8</td><td class="score">166,475</td></tr>
+<tr><td class="num">142</td><td class="song">Sorry For Party Rocking<span class="note-badge" title="Multiplier will disappear once it hits x3 0:54">📌 Multiplier will disappear once it hits x3 0:54</span></td><td class="release">x8, x3</td><td class="score">134,558</td></tr>
+<tr><td class="num">143</td><td class="song">Sorry Sorry</td><td class="release">x3, x8+1</td><td class="score">151,812</td></tr>
+<tr><td class="num">144</td><td class="song">Soul Vibe</td><td class="release">x8</td><td class="score">125,641</td></tr>
+<tr><td class="num">145</td><td class="song">Still Alive</td><td class="release">x8</td><td class="score">115,526</td></tr>
+<tr><td class="num">146</td><td class="song">Strong Girl</td><td class="release">x8+3</td><td class="score">179,121</td></tr>
+<tr><td class="num">147</td><td class="song">SuperMan</td><td class="release">x2+2, x8+1</td><td class="score">151,539</td></tr>
+<tr><td class="num">148</td><td class="song">Taste of Love</td><td class="release">x5, x8+1</td><td class="score">257,385</td></tr>
+<tr><td class="num">149</td><td class="song">Tedious</td><td class="release">x3, x8</td><td class="score">179,861</td></tr>
+<tr><td class="num">150</td><td class="song">Tell Me</td><td class="release">x8, x3</td><td class="score">175,283</td></tr>
+<tr><td class="num">151</td><td class="song">The Real Deal<span class="note-badge" title="Auto Great 1:41">📌 Auto Great 1:41</span></td><td class="release">x8+1, x2</td><td class="score">158,563</td></tr>
+<tr><td class="num">152</td><td class="song">Tickling Earthquake</td><td class="release">x8</td><td class="score">106,405</td></tr>
+<tr><td class="num">153</td><td class="song">Titanium</td><td class="release">x6, x8</td><td class="score">265,888</td></tr>
+<tr><td class="num">154</td><td class="song">Turn It Up</td><td class="release">x8+1</td><td class="score">230,386</td></tr>
+<tr><td class="num">155</td><td class="song">Unforgettable Mix</td><td class="release">x8+1</td><td class="score">114,435</td></tr>
+<tr><td class="num">156</td><td class="song">Vari2ty</td><td class="release">x8+1, x3</td><td class="score">172,038</td></tr>
+<tr><td class="num">157</td><td class="song">Very Good<span class="note-badge" title="Auto Great 3:14">📌 Auto Great 3:14</span></td><td class="release">x8+1, x4</td><td class="score">216,539</td></tr>
+<tr><td class="num">158</td><td class="song">Wanna</td><td class="release">x3+1, x8+1</td><td class="score">201,127</td></tr>
+<tr><td class="num">159</td><td class="song">Warmed Up<span class="note-badge" title="Auto Great 0:47">📌 Auto Great 0:47</span></td><td class="release">x4, x8+2</td><td class="score">254,238</td></tr>
+<tr><td class="num">160</td><td class="song">What A Girl</td><td class="release">x8</td><td class="score">156,047</td></tr>
+<tr><td class="num">161</td><td class="song">Whistle</td><td class="release">x2, x8</td><td class="score">226,004</td></tr>
+<tr><td class="num">162</td><td class="song">Without U</td><td class="release">x2+1, x8+1</td><td class="score">187,251</td></tr>
+<tr><td class="num">163</td><td class="song">Y<span class="note-badge" title="Auto Great 0:35">📌 Auto Great 0:35</span></td><td class="release">x8+1, x2</td><td class="score">149,647</td></tr>
+<tr><td class="num">164</td><td class="song">Yo te Esperare</td><td class="release">x8</td><td class="score">192,428</td></tr>
+<tr><td class="num">165</td><td class="song">You are Shining Star</td><td class="release">x8</td><td class="score">122,680</td></tr>
+<tr><td class="num">166</td><td class="song">You make me Crazy</td><td class="release">x2+1, x8</td><td class="score">197,136</td></tr>
+</tbody>
+    </table>
+    <div class="no-results" id="noResults8k" style="display:none">No songs found.</div>
+  </div>
+
+  </div><!-- end panel-4k -->
+
+  <!-- 8 KEYS PANEL -->
+  <div id="panel-4k">
+
+  <!-- 8 KEYS SONG LIST -->
+  <div class="section-head">
+    <h2>4 Keys Song List</h2>
     <div class="section-line"></div>
   </div>
 
@@ -879,7 +1114,7 @@
 <tr><td class="num">135</td><td class="song">Scene of the Moment</td><td class="release">x4, x3+1</td><td class="score">99,838</td></tr>
 <tr><td class="num">136</td><td class="song">Sexy Karma</td><td class="release">x4+1</td><td class="score">33,830</td></tr>
 <tr><td class="num">137</td><td class="song">She was Dead</td><td class="release">x4+1, x4, x2</td><td class="score">153,836</td></tr>
-<tr><td class="num">138</td><td class="song">Shock</td><td class="release">x4+2, x4+2</td><td class="score">115,273</td></tr>
+<tr><td class="num">138</td><td class="song">Shock</td><td class="release">x4+4, x4</td><td class="score">115,340</td></tr>
 <tr><td class="num">139</td><td class="song">Show Me What You Got</td><td class="release">x4</td><td class="score">41,065</td></tr>
 <tr><td class="num">140</td><td class="song">Smile Boy</td><td class="release">x2, x4+2</td><td class="score">52,256</td></tr>
 <tr><td class="num">141</td><td class="song">So Hot</td><td class="release">x4, x3</td><td class="score">64,887</td></tr>
@@ -1141,6 +1376,58 @@ fetch('https://idate-revibe-multiplier-release-2026.goatcounter.com/counter/%2F.
     const el = document.getElementById('visit-count');
     if (el) el.textContent = '—';
   });
+
+
+// ── TAB SWITCHING ─────────────────────────────────────────
+function switchTab(tab) {
+  document.getElementById('panel-4k').style.display = tab === '4k' ? '' : 'none';
+  document.getElementById('panel-8k').style.display = tab === '8k' ? '' : 'none';
+  document.getElementById('tab-4k').className = 'tab-btn' + (tab === '4k' ? ' tab-active' : '');
+  document.getElementById('tab-8k').className = 'tab-btn' + (tab === '8k' ? ' tab-active' : '');
+}
+
+// ── 8 KEYS TABLE ──────────────────────────────────────────
+let sortAsc8k = true;
+let lastSort8k = 'default';
+
+function filterTable8k() {
+  const q = document.getElementById('search8k').value.toLowerCase();
+  const tbody = document.getElementById('songBody8k');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  let any = false;
+  rows.forEach(r => {
+    const song = r.querySelector('.song')?.textContent.toLowerCase() || '';
+    const show = song.includes(q);
+    r.style.display = show ? '' : 'none';
+    if (show) any = true;
+  });
+  document.getElementById('noResults8k').style.display = any ? 'none' : 'block';
+}
+
+function sortBy8k(col) {
+  const tbody = document.getElementById('songBody8k');
+  if (!tbody) return;
+  if (lastSort8k === col) { sortAsc8k = !sortAsc8k; } else { sortAsc8k = true; lastSort8k = col; }
+  ['th8k-song','th8k-release','th8k-score'].forEach(id => { const el = document.getElementById(id); if (el) el.className = ''; });
+  const thMap = { song: 'th8k-song', release: 'th8k-release', score: 'th8k-score' };
+  if (thMap[col]) { const el = document.getElementById(thMap[col]); if (el) el.className = sortAsc8k ? 'sort-asc' : 'sort-desc'; }
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  if (col === 'default') {
+    rows.sort((a, b) => parseInt(a.querySelector('.num').textContent) - parseInt(b.querySelector('.num').textContent));
+  } else if (col === 'song') {
+    rows.sort((a, b) => { const ta = a.querySelector('.song')?.textContent || ''; const tb = b.querySelector('.song')?.textContent || ''; return sortAsc8k ? ta.localeCompare(tb) : tb.localeCompare(ta); });
+  } else if (col === 'score') {
+    rows.sort((a, b) => {
+      const sa = a.querySelector('.score')?.textContent.replace(/,/g,'') || '0';
+      const sb = b.querySelector('.score')?.textContent.replace(/,/g,'') || '0';
+      const na = sa === '???' ? -1 : parseInt(sa);
+      const nb = sb === '???' ? -1 : parseInt(sb);
+      return sortAsc8k ? nb - na : na - nb;
+    });
+  }
+  rows.forEach(r => tbody.appendChild(r));
+}
+
 </script>
 </body>
 </html>
